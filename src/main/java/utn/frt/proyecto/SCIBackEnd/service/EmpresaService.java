@@ -26,4 +26,16 @@ public class EmpresaService {
     public Empresa getByUser(String user) {
         return repository.findByUser(user);
     }
+
+    public int getNextContenedorId() {
+        return repository.getNextContenedorId();
+    }
+
+    public int getNextRecolectorId() {
+        return repository.getNextRecolectorId();
+    }
+
+    public Empresa getAllContenedores() {
+        return null;
+    }
 }

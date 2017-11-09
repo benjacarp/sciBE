@@ -12,6 +12,7 @@ public class Empresa {
     private String password;
 
     private List<Contenedor> contenedores = new ArrayList<Contenedor>();
+    private List<Recolector> recolectores = new ArrayList<>();
     private int id;
 
     public Empresa() {
@@ -68,4 +69,9 @@ public class Empresa {
     public List<Contenedor> getContenedores() {
         return contenedores;
     }
+
+    public List<Recolector> getRecolectores() {
+        return recolectores;
+    }
+
 }

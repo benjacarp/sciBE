@@ -3,12 +3,9 @@ package utn.frt.proyecto.SCIBackEnd.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import utn.frt.proyecto.SCIBackEnd.dto.ContenedorDTO;
 import utn.frt.proyecto.SCIBackEnd.dto.EmpresaDTO;
 import utn.frt.proyecto.SCIBackEnd.dto.LoginDTO;
-import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
-import utn.frt.proyecto.SCIBackEnd.service.ContenedorService;
 import utn.frt.proyecto.SCIBackEnd.service.EmpresaService;
 
 @RestController
@@ -17,9 +14,6 @@ public class EmpresaController {
 
     @Autowired
     private EmpresaService empresaService;
-
-    @Autowired
-    private ContenedorService contenedorService;
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public int newEmpresa(@RequestBody EmpresaDTO empresaDTO) {

@@ -3,10 +3,8 @@ package utn.frt.proyecto.SCIBackEnd.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import utn.frt.proyecto.SCIBackEnd.dto.ContenedorDTO;
-import utn.frt.proyecto.SCIBackEnd.dto.EmpresaDTO;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
-import utn.frt.proyecto.SCIBackEnd.service.ContenedorService;
 import utn.frt.proyecto.SCIBackEnd.service.EmpresaService;
 
 import java.util.ArrayList;
@@ -14,11 +12,14 @@ import java.util.List;
 
 @RestController
 public class ContenedorController {
-    @Autowired
-    private ContenedorService contenedorService;
 
     @Autowired
     private EmpresaService empresaService;
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String holaMundo() {
+        return "Hola mundo";
+    }
 
     @RequestMapping(value = "/empresa/{idEmpresa}/contenedor", method = RequestMethod.POST)
     public Boolean createContenedor(@PathVariable int idEmpresa,
@@ -30,7 +31,7 @@ public class ContenedorController {
         contenedor.setCordX(contenedorDTO.getCordX());
         contenedor.setCordY(contenedorDTO.getCordY());
 
-        contenedorService.newContenedor(contenedor);
+        contenedor.setId(empresaService.getNextContenedorId());
 
         empresa.getContenedores().add(contenedor);
 
@@ -60,10 +61,5 @@ public class ContenedorController {
             contenedorDTOS.add(contenedorDTO);
         }
         return contenedorDTOS;
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String holaMundo() {
-        return "Hola mundo";
     }
 }

@@ -10,12 +10,15 @@ import java.util.List;
 public class EmpresaRepository {
 
     private List<Empresa> empresas = new ArrayList<Empresa>();
-    private int id = 0;
+
+    private int empresaId = 0;
+    private int contenedorId = 0;
+    private int recolectorId = 0;
 
     public int save(Empresa empresa) {
         empresas.add(empresa);
-        empresa.setId(++id);
-        return id;
+        empresa.setId(++empresaId);
+        return empresaId;
     }
 
     public Empresa findOne(int id) {
@@ -40,5 +43,13 @@ public class EmpresaRepository {
             }
         }
         return null;
+    }
+
+    public int getNextContenedorId() {
+        return ++contenedorId;
+    }
+
+    public int getNextRecolectorId() {
+        return ++recolectorId;
     }
 }
