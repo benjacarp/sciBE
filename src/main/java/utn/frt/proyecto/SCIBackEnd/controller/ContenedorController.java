@@ -3,6 +3,7 @@ package utn.frt.proyecto.SCIBackEnd.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import utn.frt.proyecto.SCIBackEnd.dto.ContenedorDTO;
+import utn.frt.proyecto.SCIBackEnd.dto.EmpresaDTO;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
 import utn.frt.proyecto.SCIBackEnd.service.ContenedorService;
@@ -59,5 +60,10 @@ public class ContenedorController {
             contenedorDTOS.add(contenedorDTO);
         }
         return contenedorDTOS;
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String holaMundo() {
+        return "Hola mundo";
     }
 }
