@@ -9,12 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contenedor")
-public class Controller {
-
+@RequestMapping("/llenado")
+public class LlenadoController {
     private List<Llenado> llenados = new ArrayList<Llenado>();
 
-    @RequestMapping(value = "/{id}/llenado", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public Boolean llenado(@PathVariable int id, @RequestParam double nivel) {
         llenados.add(new Llenado(id,new Date(),nivel));
         return true;
@@ -24,5 +23,4 @@ public class Controller {
     public List<Llenado> getAll() {
         return llenados;
     }
-
 }
