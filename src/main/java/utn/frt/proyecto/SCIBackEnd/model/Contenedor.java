@@ -1,27 +1,28 @@
 package utn.frt.proyecto.SCIBackEnd.model;
 
 public class Contenedor {
-    private String modelo;
-    private int numeroDeSerie;
     private int id;
+    private String material;
+    private int cordX;
+    private int cordY;
 
     public Contenedor() {
     }
 
-    public String getModelo() {
-        return modelo;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public int getNumeroDeSerie() {
-        return numeroDeSerie;
+    public int getCordX() {
+        return cordX;
     }
 
-    public void setNumeroDeSerie(int numeroDeSerie) {
-        this.numeroDeSerie = numeroDeSerie;
+    public void setCordX(int cordX) {
+        this.cordX = cordX;
     }
 
     public int getId() {
@@ -30,5 +31,13 @@ public class Contenedor {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCordY() {
+        return cordY;
+    }
+
+    public void setCordY(int cordY) {
+        this.cordY = cordY;
     }
 }

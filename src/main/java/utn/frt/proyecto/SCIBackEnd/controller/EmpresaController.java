@@ -33,25 +33,15 @@ public class EmpresaController {
         return empresaService.newEmpresa(empresa);
     }
 
-    @RequestMapping(value = "/empresa/{idEmpresa}/contenedor/{idContenedor}", method = RequestMethod.POST)
-    public Boolean addContenedorAEmpresa(@PathVariable int idEmpresa, @PathVariable int idContenedor) {
-        Empresa empresa = empresaService.getById(idEmpresa);
-        Contenedor contenedor = contenedorService.getById(idContenedor);
-
-        empresa.getContenedores().add(contenedor);
-
-        empresaService.update(empresa);
-
-        return true;
-    }
-
     @RequestMapping(value = "/{idEmpresa}", method = RequestMethod.GET)
     public EmpresaDTO getEmpresa(@PathVariable int idEmpresa) {
         Empresa empresa = empresaService.getById(idEmpresa);
 
         EmpresaDTO empresaDTO = new EmpresaDTO();
+        empresaDTO.setId(empresa.getId());
         empresaDTO.setNombre(empresa.getNombre());
-        empresaDTO.setContenedores(empresa.getContenedores());
+        empresaDTO.setCuit(empresa.getCuit());
+        empresaDTO.setDireccion(empresa.getDireccion());
 
         return empresaDTO;
     }

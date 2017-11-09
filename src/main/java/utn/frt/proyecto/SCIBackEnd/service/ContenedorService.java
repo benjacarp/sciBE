@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.repository.ContenedorRepository;
 
+import java.util.List;
+
 @Component
 public class ContenedorService {
     @Autowired

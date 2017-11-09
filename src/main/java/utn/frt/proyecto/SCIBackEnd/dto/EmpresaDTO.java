@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmpresaDTO {
+    private int id;
     private String nombre;
     private String direccion;
     private String cuit;
@@ -13,7 +14,7 @@ public class EmpresaDTO {
     private String user;
     private String password;
 
-    private List<ContenedorDTO> contenedores;
+//    private List<ContenedorDTO> contenedores;
 
     public EmpresaDTO() {
     }
@@ -58,6 +59,15 @@ public class EmpresaDTO {
         this.password = password;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /*
     public List<ContenedorDTO> getContenedores() {
         return contenedores;
     }
@@ -70,10 +80,10 @@ public class EmpresaDTO {
         ContenedorDTO contenedorDTO;
         for (Contenedor contenedor : contenedores) {
             contenedorDTO = new ContenedorDTO();
-            contenedorDTO.setModelo(contenedor.getModelo());
-            contenedorDTO.setNumeroDeSerie(contenedor.getNumeroDeSerie());
+            contenedorDTO.setMaterial(contenedor.getMaterial());
+            contenedorDTO.setCordX(contenedor.getCordX());
             contenedoresDTO.add(contenedorDTO);
         }
         this.contenedores = contenedoresDTO;
-    }
+    }*/
 }

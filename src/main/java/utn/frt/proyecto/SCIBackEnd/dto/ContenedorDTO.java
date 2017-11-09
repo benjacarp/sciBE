@@ -1,23 +1,44 @@
 package utn.frt.proyecto.SCIBackEnd.dto;
 
 public class ContenedorDTO {
+    private int id;
+    private String material;
+    private int cordX;
+    private int cordY;
 
-    private String modelo;
-    private int numeroDeSerie;
-
-    public String getModelo() {
-        return modelo;
+    public ContenedorDTO() {
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public String getMaterial() {
+        return material;
     }
 
-    public int getNumeroDeSerie() {
-        return numeroDeSerie;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
-    public void setNumeroDeSerie(int numeroDeSerie) {
-        this.numeroDeSerie = numeroDeSerie;
+    public int getCordX() {
+        return cordX;
+    }
+
+    public void setCordX(int cordX) {
+        this.cordX = cordX;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCordY() {
+        return cordY;
+    }
+
+    public void setCordY(int cordY) {
+        this.cordY = cordY;
     }
 }
+
