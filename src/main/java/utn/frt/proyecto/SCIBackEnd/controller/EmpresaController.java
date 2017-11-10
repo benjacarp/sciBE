@@ -15,8 +15,8 @@ public class EmpresaController {
     @Autowired
     private EmpresaService empresaService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public int newEmpresa(@RequestBody EmpresaDTO empresaDTO) {
+    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public int newEmpresa(EmpresaDTO empresaDTO) {
         Empresa empresa = new Empresa();
         empresa.setNombre(empresaDTO.getNombre());
         empresa.setCuit(empresaDTO.getCuit());
