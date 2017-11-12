@@ -1,10 +1,13 @@
 package utn.frt.proyecto.SCIBackEnd.dto;
 
+import utn.frt.proyecto.SCIBackEnd.model.Recolector;
+
 public class ContenedorDTO {
     private int id;
     private String material;
     private int cordX;
     private int cordY;
+    private String recolectorName;
 
     public ContenedorDTO() {
     }
@@ -39,6 +42,14 @@ public class ContenedorDTO {
 
     public void setCordY(int cordY) {
         this.cordY = cordY;
+    }
+
+    public String getRecolectorName() {
+        return recolectorName;
+    }
+
+    public void setRecolectorName(String recolectorName) {
+        this.recolectorName = recolectorName;
     }
 }
 

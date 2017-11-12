@@ -1,22 +1,22 @@
 package utn.frt.proyecto.SCIBackEnd.dto;
 
 public class LoginDTO {
-    private boolean success = false;
-    private String message;
+    private String user;
+    private String pass;
 
-    public boolean isSuccess() {
-        return success;
+    public String getUser() {
+        return user;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public String getMessage() {
-        return message;
+    public String getPass() {
+        return pass;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

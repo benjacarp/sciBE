@@ -2,6 +2,7 @@ package utn.frt.proyecto.SCIBackEnd.repository;
 
 import org.springframework.stereotype.Repository;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
+import utn.frt.proyecto.SCIBackEnd.model.Recolector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,5 +52,16 @@ public class EmpresaRepository {
 
     public int getNextRecolectorId() {
         return ++recolectorId;
+    }
+
+    public Empresa findByRecolector(Recolector recolector) {
+        for (Empresa empresa: empresas) {
+            for (Recolector recolectorEmpresa : empresa.getRecolectores()) {
+                if (recolector.equals(recolectorEmpresa)) {
+                    return empresa;
+                }
+            }
+        }
+        return null;
     }
 }

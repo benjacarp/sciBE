@@ -1,12 +1,15 @@
 package utn.frt.proyecto.SCIBackEnd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import utn.frt.proyecto.SCIBackEnd.dto.ContenedorDTO;
 import utn.frt.proyecto.SCIBackEnd.dto.RecolectorDTO;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
 import utn.frt.proyecto.SCIBackEnd.model.Recolector;
 import utn.frt.proyecto.SCIBackEnd.service.EmpresaService;
+import utn.frt.proyecto.SCIBackEnd.service.RecolectorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +19,20 @@ public class RecolectorController {
     @Autowired
     private EmpresaService empresaService;
 
-    @RequestMapping(value = "/empresa/{idEmpresa}/recolector", method = RequestMethod.POST)
-    public Boolean createContenedor(@PathVariable int idEmpresa,
-                                    @RequestBody RecolectorDTO recolectorDTO) {
+    @Autowired
+    private RecolectorService recolectorService;
+
+    @RequestMapping(value = "/empresa/{idEmpresa}/recolector", method = RequestMethod.POST,
+    consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public Boolean createContenedor(@PathVariable int idEmpresa, RecolectorDTO recolectorDTO) {
         Empresa empresa = empresaService.getById(idEmpresa);
 
         Recolector recolector = new Recolector();
         recolector.setDni(recolectorDTO.getDni());
         recolector.setNombre(recolectorDTO.getNombre());
 
-        recolector.setId(empresaService.getNextRecolectorId());
+//        recolector.setId(empresaService.getNextRecolectorId());
+        recolectorService.save(recolector);
 
         empresa.getRecolectores().add(recolector);
 
@@ -51,16 +58,30 @@ public class RecolectorController {
             recolectorDTO.setId(recolector.getId());
             recolectorDTO.setDni(recolector.getDni());
             recolectorDTO.setNombre(recolector.getNombre());
+            recolectorDTO.setContenedorDTOs(convertToContenedorDTO(recolector.getContenedores()));
             recolectorDTOS.add(recolectorDTO);
+
         }
         return recolectorDTOS;
     }
 
-    //TODO agregar los services de contenedores y recolectores para facilitar esta parte.
-    @RequestMapping(value = "/recolector/{idRecolector}/contenedor/{idContenedor}", method = RequestMethod.POST)
-    public Boolean createContenedor(@PathVariable int idRecolector,
-                                    @PathVariable int idContenedor,
-                                    @RequestBody RecolectorDTO recolectorDTO) {
-        return true;
+    private List<ContenedorDTO> convertToContenedorDTO(List<Contenedor> contenedores) {
+        List<ContenedorDTO> contenedorDTOS = new ArrayList<>();
+        ContenedorDTO contenedorDTO;
+        for (Contenedor contenedor : contenedores) {
+            contenedorDTO = new ContenedorDTO();
+            contenedorDTO.setId(contenedor.getId());
+            contenedorDTO.setMaterial(contenedor.getMaterial());
+            contenedorDTO.setCordX(contenedor.getCordX());
+            contenedorDTO.setCordY(contenedor.getCordY());
+
+            if (contenedor.getRecolector() == null) {
+                contenedorDTO.setRecolectorName("no asignado");
+            } else {
+                contenedorDTO.setRecolectorName(contenedor.getRecolector().getNombre());
+            }
+            contenedorDTOS.add(contenedorDTO);
+        }
+        return contenedorDTOS;
     }
 }

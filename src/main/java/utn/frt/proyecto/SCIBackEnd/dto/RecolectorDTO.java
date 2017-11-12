@@ -1,9 +1,13 @@
 package utn.frt.proyecto.SCIBackEnd.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecolectorDTO {
     private int id;
     private int dni;
     private String nombre;
+    private List<ContenedorDTO> contenedorDTOs = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -27,5 +31,13 @@ public class RecolectorDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<ContenedorDTO> getContenedorDTOs() {
+        return contenedorDTOs;
+    }
+
+    public void setContenedorDTOs(List<ContenedorDTO> contenedorDTOs) {
+        this.contenedorDTOs = contenedorDTOs;
     }
 }

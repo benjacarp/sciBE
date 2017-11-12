@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import utn.frt.proyecto.SCIBackEnd.dto.EmpresaDTO;
-import utn.frt.proyecto.SCIBackEnd.dto.LoginDTO;
+import utn.frt.proyecto.SCIBackEnd.dto.LoginResponseDTO;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
 import utn.frt.proyecto.SCIBackEnd.service.EmpresaService;
 
@@ -15,7 +15,8 @@ public class EmpresaController {
     @Autowired
     private EmpresaService empresaService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public int newEmpresa(EmpresaDTO empresaDTO) {
         Empresa empresa = new Empresa();
         empresa.setNombre(empresaDTO.getNombre());
@@ -40,21 +41,20 @@ public class EmpresaController {
         return empresaDTO;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST,
-    produces = MediaType.APPLICATION_JSON_VALUE
+    @RequestMapping(value = "/login", method = RequestMethod.GET
     )
-    public LoginDTO getEmpresa(@RequestParam String user, @RequestParam String pass) {
+    public LoginResponseDTO login(@RequestParam String user, @RequestParam String pass) {
         Empresa empresa = empresaService.getByUser(user);
-        LoginDTO loginDTO = new LoginDTO();
+        LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
         if (empresa == null) {
-            loginDTO.setMessage("Usuario invalido");
+            loginResponseDTO.setMessage("Usuario invalido");
         } else {
             if (empresa.getPassword().equals(pass)) {
-                loginDTO.setMessage("Log in exitoso");
-                loginDTO.setSuccess(true);
+                loginResponseDTO.setMessage("" + empresa.getId());
+                loginResponseDTO.setSuccess(true);
             } else
-                loginDTO.setMessage("Pass incorrecto");
+                loginResponseDTO.setMessage("Pass incorrecto");
         }
-        return loginDTO;
+        return loginResponseDTO;
     }
 }

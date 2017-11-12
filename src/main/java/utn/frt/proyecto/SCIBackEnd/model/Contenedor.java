@@ -5,6 +5,7 @@ public class Contenedor {
     private String material;
     private int cordX;
     private int cordY;
+    private Recolector recolector;
 
     public Contenedor() {
     }
@@ -39,5 +40,13 @@ public class Contenedor {
 
     public void setCordY(int cordY) {
         this.cordY = cordY;
+    }
+
+    public Recolector getRecolector() {
+        return recolector;
+    }
+
+    public void setRecolector(Recolector recolector) {
+        this.recolector = recolector;
     }
 }

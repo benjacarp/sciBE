@@ -3,6 +3,7 @@ package utn.frt.proyecto.SCIBackEnd.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
+import utn.frt.proyecto.SCIBackEnd.model.Recolector;
 import utn.frt.proyecto.SCIBackEnd.repository.EmpresaRepository;
 
 @Component
@@ -37,5 +38,9 @@ public class EmpresaService {
 
     public Empresa getAllContenedores() {
         return null;
+    }
+
+    public Empresa findByRecolector(Recolector recolector) {
+        return repository.findByRecolector(recolector);
     }
 }
