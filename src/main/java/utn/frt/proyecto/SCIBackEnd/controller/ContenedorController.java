@@ -8,12 +8,10 @@ import utn.frt.proyecto.SCIBackEnd.dto.RecolectorDTO;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
 import utn.frt.proyecto.SCIBackEnd.model.Recolector;
-import utn.frt.proyecto.SCIBackEnd.repository.RecolectorRepository;
 import utn.frt.proyecto.SCIBackEnd.service.ContenedorService;
 import utn.frt.proyecto.SCIBackEnd.service.EmpresaService;
 import utn.frt.proyecto.SCIBackEnd.service.RecolectorService;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,10 +89,52 @@ public class ContenedorController {
 
         contenedor.setRecolector(recolector);
 
-        Empresa empresa = empresaService.findByRecolector(recolector);
+        Empresa empresa = empresaService.findByContenedor(contenedor);
 
         empresaService.update(empresa);
 
         return true;
+    }
+
+    @RequestMapping(value = "/contenedor", method = RequestMethod.GET)
+    public List<ContenedorDTO> viewAll(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "") String material) {
+
+        List<Contenedor> contenedoresOrdenados = contenedorService.getContenedoresSortedByDistance(x, y, material);
+
+        return convertToDTOForUser(contenedoresOrdenados);
+    }
+
+    private List<ContenedorDTO> convertToDTOForUser(List<Contenedor> contenedoresOrdenados) {
+        List<ContenedorDTO> contenedorDTOS = new ArrayList<>();
+        ContenedorDTO contenedorDTO;
+        for (Contenedor contenedor : contenedoresOrdenados) {
+            contenedorDTO = new ContenedorDTO();
+            contenedorDTO.setMaterial(contenedor.getMaterial());
+            contenedorDTO.setCordX(contenedor.getCordX());
+            contenedorDTO.setCordY(contenedor.getCordY());
+            contenedorDTOS.add(contenedorDTO);
+        }
+        return contenedorDTOS;
+    }
+
+    @RequestMapping(value = "/recolector/{id}/contenedor", method = RequestMethod.GET)
+    public List<ContenedorDTO> getContenedoresForRecolector(@PathVariable int id) {
+        Recolector recolector = recolectorService.findById(id);
+        List<Contenedor> contenedores = contenedorService.getAllByRecolector(recolector);
+        return convertToDTOForRecolector(contenedores);
+    }
+
+    private List<ContenedorDTO> convertToDTOForRecolector(List<Contenedor> contenedores) {
+        List<ContenedorDTO> contenedorDTOS = new ArrayList<>();
+        ContenedorDTO contenedorDTO;
+        for (Contenedor contenedor : contenedores) {
+            contenedorDTO = new ContenedorDTO();
+            contenedorDTO.setId(contenedor.getId());
+            contenedorDTO.setMaterial(contenedor.getMaterial());
+            contenedorDTO.setCordX(contenedor.getCordX());
+            contenedorDTO.setCordY(contenedor.getCordY());
+            contenedorDTOS.add(contenedorDTO);
+        }
+        return contenedorDTOS;
     }
 }

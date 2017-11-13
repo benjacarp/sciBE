@@ -26,4 +26,18 @@ public class ContenedorRepository {
         }
         return null;
     }
+
+    public List<Contenedor> getAll() {
+        return contenedores;
+    }
+
+    public List<Contenedor> getAllFilterByMaterial(String material) {
+        List<Contenedor> contenedoresFiltrados = new ArrayList<>();
+        for (Contenedor c : contenedores) {
+            if (c.getMaterial().equals(material)) {
+                contenedoresFiltrados.add(c);
+            }
+        }
+        return contenedoresFiltrados;
+    }
 }

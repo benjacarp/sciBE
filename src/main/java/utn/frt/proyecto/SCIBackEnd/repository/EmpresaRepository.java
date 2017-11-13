@@ -1,6 +1,7 @@
 package utn.frt.proyecto.SCIBackEnd.repository;
 
 import org.springframework.stereotype.Repository;
+import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
 import utn.frt.proyecto.SCIBackEnd.model.Recolector;
 
@@ -54,10 +55,10 @@ public class EmpresaRepository {
         return ++recolectorId;
     }
 
-    public Empresa findByRecolector(Recolector recolector) {
+    public Empresa findByRecolector(Contenedor contenedor) {
         for (Empresa empresa: empresas) {
-            for (Recolector recolectorEmpresa : empresa.getRecolectores()) {
-                if (recolector.equals(recolectorEmpresa)) {
+            for (Contenedor contenedorEmpresa : empresa.getContenedores()) {
+                if (contenedor.equals(contenedorEmpresa)) {
                     return empresa;
                 }
             }

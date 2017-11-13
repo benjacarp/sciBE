@@ -6,6 +6,8 @@ public class Contenedor {
     private int cordX;
     private int cordY;
     private Recolector recolector;
+    private double espacioLibre;
+    private double capacidad;
 
     public Contenedor() {
     }
@@ -48,5 +50,21 @@ public class Contenedor {
 
     public void setRecolector(Recolector recolector) {
         this.recolector = recolector;
+    }
+
+    public double getEspacioLibre() {
+        return espacioLibre;
+    }
+
+    public void setEspacioLibre(double espacioLibre) {
+        this.espacioLibre = espacioLibre;
+    }
+
+    public double getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(double capacidad) {
+        this.capacidad = capacidad;
     }
 }

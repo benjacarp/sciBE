@@ -1,11 +1,15 @@
 package utn.frt.proyecto.SCIBackEnd.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
+import utn.frt.proyecto.SCIBackEnd.model.Empresa;
 import utn.frt.proyecto.SCIBackEnd.model.Llenado;
+import utn.frt.proyecto.SCIBackEnd.service.ContenedorService;
+import utn.frt.proyecto.SCIBackEnd.service.EmpresaService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -13,9 +17,19 @@ import java.util.List;
 public class LlenadoController {
     private List<Llenado> llenados = new ArrayList<Llenado>();
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Boolean llenado(@PathVariable int id, @RequestParam double nivel) {
-        llenados.add(new Llenado(id,new Date(),nivel));
+    @Autowired
+    private ContenedorService contenedorService;
+
+    @Autowired
+    private EmpresaService empresaService;
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Boolean llenado(@PathVariable int id, @RequestParam double libre) {
+        Contenedor contenedor = contenedorService.findById(id);
+        contenedor.setEspacioLibre(libre);
+        Empresa empresa = empresaService.findByContenedor(contenedor);
+        empresaService.update(empresa);
+
         return true;
     }
 
