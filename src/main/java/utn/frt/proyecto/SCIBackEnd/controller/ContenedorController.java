@@ -37,10 +37,38 @@ public class ContenedorController {
         contenedor.setCordX(contenedorDTO.getCordX());
         contenedor.setCordY(contenedorDTO.getCordY());
 
-//        contenedor.setId(empresaService.getNextContenedorId());
         contenedorService.save(contenedor);
 
         empresa.getContenedores().add(contenedor);
+
+        empresaService.update(empresa);
+
+        return true;
+    }
+
+    @RequestMapping(value = "/empresa/{idEmpresa}/contenedor/{idContenedor}", method = RequestMethod.PUT,
+    consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public Boolean modifyContenedor(@PathVariable int idEmpresa, @PathVariable int idContenedor, ContenedorDTO contenedorDTO) {
+        Empresa empresa = empresaService.getById(idEmpresa);
+
+        Contenedor contenedor = contenedorService.findById(idContenedor);
+
+        contenedor.setMaterial(contenedorDTO.getMaterial());
+        contenedor.setCordX(contenedorDTO.getCordX());
+        contenedor.setCordY(contenedorDTO.getCordY());
+
+        empresaService.update(empresa);
+
+        return true;
+    }
+
+    @RequestMapping(value = "/empresa/{idEmpresa}/contenedor/{idContenedor}", method = RequestMethod.DELETE)
+    public Boolean deleteContenedor(@PathVariable int idEmpresa, @PathVariable int idContenedor) {
+        Empresa empresa = empresaService.getById(idEmpresa);
+
+        Contenedor contenedor = contenedorService.findById(idContenedor);
+
+        empresa.getContenedores().remove(contenedor);
 
         empresaService.update(empresa);
 
@@ -76,7 +104,6 @@ public class ContenedorController {
         return contenedorDTOS;
     }
 
-    //TODO agregar los services de contenedores y recolectores para facilitar esta parte.
     @RequestMapping(value = "/recolector/{idRecolector}/contenedor/{idContenedor}", method = RequestMethod.POST)
     public Boolean createContenedor(@PathVariable int idRecolector,
                                     @PathVariable int idContenedor) {

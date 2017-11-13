@@ -31,10 +31,37 @@ public class RecolectorController {
         recolector.setDni(recolectorDTO.getDni());
         recolector.setNombre(recolectorDTO.getNombre());
 
-//        recolector.setId(empresaService.getNextRecolectorId());
         recolectorService.save(recolector);
 
         empresa.getRecolectores().add(recolector);
+
+        empresaService.update(empresa);
+
+        return true;
+    }
+
+    @RequestMapping(value = "/empresa/{idEmpresa}/recolector/{idRecolector}", method = RequestMethod.PUT,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public Boolean modifyContenedor(@PathVariable int idEmpresa, @PathVariable int idRecolector, RecolectorDTO recolectorDTO) {
+        Empresa empresa = empresaService.getById(idEmpresa);
+
+        Recolector recolector = recolectorService.findById(idRecolector);
+
+        recolector.setDni(recolectorDTO.getDni());
+        recolector.setNombre(recolectorDTO.getNombre());
+
+        empresaService.update(empresa);
+
+        return true;
+    }
+
+    @RequestMapping(value = "/empresa/{idEmpresa}/recolector/{idRecolector}", method = RequestMethod.DELETE)
+    public Boolean deleteContenedor(@PathVariable int idEmpresa, @PathVariable int idRecolector) {
+        Empresa empresa = empresaService.getById(idEmpresa);
+
+        Recolector recolector = recolectorService.findById(idRecolector);
+
+        empresa.getRecolectores().remove(recolector);
 
         empresaService.update(empresa);
 
