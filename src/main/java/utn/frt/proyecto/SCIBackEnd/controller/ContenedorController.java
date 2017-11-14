@@ -125,26 +125,15 @@ public class ContenedorController {
 
     @RequestMapping(value = "/contenedor", method = RequestMethod.GET)
     public List<String> viewAll(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "") String material) {
-//        List<Contenedor> contenedoresOrdenados = contenedorService.getContenedoresSortedByDistance(x, y, material);
+        List<Contenedor> contenedoresOrdenados = contenedorService.getContenedoresSortedByDistance(x, y, material);
+
 //        return convertToDTOForUser(contenedoresOrdenados);
 
-        ContenedorDTO contenedorDTO1 = new ContenedorDTO();
-        contenedorDTO1.setId(1);
-        contenedorDTO1.setCordX(1);
-        contenedorDTO1.setCordY(1);
-        contenedorDTO1.setMaterial("pet");
-
-        ContenedorDTO contenedorDTO2 = new ContenedorDTO();
-        contenedorDTO2.setId(2);
-        contenedorDTO2.setCordX(4);
-        contenedorDTO2.setCordY(5);
-        contenedorDTO2.setMaterial("vidiro");
-
         List<String> contenedores = new ArrayList<>();
-        contenedores.add(contenedorDTO1.toString());
-        contenedores.add(contenedorDTO2.toString());
+        for (Contenedor contenedor : contenedoresOrdenados) {
+            contenedores.add(contenedor.toString());
+        }
         return contenedores;
-//        return "response " + material + ". ubicacion: " + x + "," + y;
     }
 
     private List<ContenedorDTO> convertToDTOForUser(List<Contenedor> contenedoresOrdenados) {

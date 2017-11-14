@@ -67,4 +67,13 @@ public class Contenedor {
     public void setCapacidad(double capacidad) {
         this.capacidad = capacidad;
     }
+
+    @Override
+    public String toString() {
+        return "Contenedor{" +
+                "material='" + material + '\'' +
+                ", ubicacion: " + cordX +
+                "," + cordY +
+                '}';
+    }
 }
