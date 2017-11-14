@@ -51,5 +51,14 @@ public class ContenedorDTO {
     public void setRecolectorName(String recolectorName) {
         this.recolectorName = recolectorName;
     }
+
+    @Override
+    public String toString() {
+        return "Contenedor{" +
+                "material='" + material + '\'' +
+                ", ubicacion=" + cordX +
+                ", " + cordY +
+                '}';
+    }
 }
 
