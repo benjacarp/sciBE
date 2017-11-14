@@ -124,24 +124,25 @@ public class ContenedorController {
     }
 
     @RequestMapping(value = "/contenedor", method = RequestMethod.GET)
-    public List<ContenedorDTO> viewAll(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "") String material) {
+    public String viewAll(@RequestParam int x, @RequestParam int y, @RequestParam(defaultValue = "") String material) {
 //        List<Contenedor> contenedoresOrdenados = contenedorService.getContenedoresSortedByDistance(x, y, material);
 //        return convertToDTOForUser(contenedoresOrdenados);
 
-        ContenedorDTO contenedorDTO1 = new ContenedorDTO();
-        contenedorDTO1.setCordX(1);
-        contenedorDTO1.setCordY(1);
-        contenedorDTO1.setMaterial("pet");
-
-        ContenedorDTO contenedorDTO2 = new ContenedorDTO();
-        contenedorDTO2.setCordX(4);
-        contenedorDTO2.setCordY(5);
-        contenedorDTO2.setMaterial("vidiro");
-
-        List<ContenedorDTO> contenedores = new ArrayList<>();
-        contenedores.add(contenedorDTO1);
-        contenedores.add(contenedorDTO2);
-        return contenedores;
+//        ContenedorDTO contenedorDTO1 = new ContenedorDTO();
+//        contenedorDTO1.setCordX(1);
+//        contenedorDTO1.setCordY(1);
+//        contenedorDTO1.setMaterial("pet");
+//
+//        ContenedorDTO contenedorDTO2 = new ContenedorDTO();
+//        contenedorDTO2.setCordX(4);
+//        contenedorDTO2.setCordY(5);
+//        contenedorDTO2.setMaterial("vidiro");
+//
+//        List<ContenedorDTO> contenedores = new ArrayList<>();
+//        contenedores.add(contenedorDTO1);
+//        contenedores.add(contenedorDTO2);
+//        return contenedores;
+        return "response " + material + ". ubicacion: " + x + "," + y;
     }
 
     private List<ContenedorDTO> convertToDTOForUser(List<Contenedor> contenedoresOrdenados) {
