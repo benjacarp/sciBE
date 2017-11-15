@@ -3,10 +3,10 @@ package utn.frt.proyecto.SCIBackEnd.model;
 public class Contenedor {
     private int id;
     private String material;
-    private int cordX;
-    private int cordY;
+    private double cordX;
+    private double cordY;
     private Recolector recolector;
-    private double espacioLibre;
+    private double llenado;
     private double capacidad;
 
     public Contenedor() {
@@ -20,11 +20,11 @@ public class Contenedor {
         this.material = material;
     }
 
-    public int getCordX() {
+    public double getCordX() {
         return cordX;
     }
 
-    public void setCordX(int cordX) {
+    public void setCordX(double cordX) {
         this.cordX = cordX;
     }
 
@@ -36,11 +36,11 @@ public class Contenedor {
         this.id = id;
     }
 
-    public int getCordY() {
+    public double getCordY() {
         return cordY;
     }
 
-    public void setCordY(int cordY) {
+    public void setCordY(double cordY) {
         this.cordY = cordY;
     }
 
@@ -52,12 +52,12 @@ public class Contenedor {
         this.recolector = recolector;
     }
 
-    public double getEspacioLibre() {
-        return espacioLibre;
+    public double getLlenado() {
+        return llenado;
     }
 
-    public void setEspacioLibre(double espacioLibre) {
-        this.espacioLibre = espacioLibre;
+    public void setLlenado(double llenado) {
+        this.llenado = llenado;
     }
 
     public double getCapacidad() {
@@ -70,10 +70,9 @@ public class Contenedor {
 
     @Override
     public String toString() {
-        return "Contenedor{" +
-                "material='" + material + '\'' +
-                ", ubicacion: " + cordX +
-                "," + cordY +
-                '}';
+        return "Contenedor" + id +
+                "\nmaterial: '" + material + '\'' +
+                "\nubicacion: " + cordX + "," + cordY +
+                "\ncapacidad: " + capacidad + "(lts), libre: " + (capacidad - llenado);
     }
 }

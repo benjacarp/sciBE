@@ -24,9 +24,9 @@ public class LlenadoController {
     private EmpresaService empresaService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Boolean llenado(@PathVariable int id, @RequestParam double libre) {
+    public Boolean llenado(@PathVariable int id, @RequestParam double llenado) {
         Contenedor contenedor = contenedorService.findById(id);
-        contenedor.setEspacioLibre(libre);
+        contenedor.setLlenado(llenado);
         Empresa empresa = empresaService.findByContenedor(contenedor);
         empresaService.update(empresa);
 

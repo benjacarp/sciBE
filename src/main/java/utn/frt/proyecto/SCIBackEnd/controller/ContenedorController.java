@@ -36,6 +36,7 @@ public class ContenedorController {
         contenedor.setMaterial(contenedorDTO.getMaterial());
         contenedor.setCordX(contenedorDTO.getCordX());
         contenedor.setCordY(contenedorDTO.getCordY());
+        contenedor.setCapacidad(contenedorDTO.getCapacidad());
 
         contenedorService.save(contenedor);
 
@@ -56,6 +57,7 @@ public class ContenedorController {
         contenedor.setMaterial(contenedorDTO.getMaterial());
         contenedor.setCordX(contenedorDTO.getCordX());
         contenedor.setCordY(contenedorDTO.getCordY());
+        contenedor.setCapacidad(contenedorDTO.getCapacidad());
 
         empresaService.update(empresa);
 
@@ -93,6 +95,7 @@ public class ContenedorController {
             contenedorDTO.setMaterial(contenedor.getMaterial());
             contenedorDTO.setCordX(contenedor.getCordX());
             contenedorDTO.setCordY(contenedor.getCordY());
+            contenedorDTO.setCapacidad(contenedor.getCapacidad());
 
             if (contenedor.getRecolector() == null) {
                 contenedorDTO.setRecolectorName("no asignado");

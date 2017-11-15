@@ -5,9 +5,10 @@ import utn.frt.proyecto.SCIBackEnd.model.Recolector;
 public class ContenedorDTO {
     private int id;
     private String material;
-    private int cordX;
-    private int cordY;
+    private double cordX;
+    private double cordY;
     private String recolectorName;
+    private double capacidad;
 
     public ContenedorDTO() {
     }
@@ -20,11 +21,11 @@ public class ContenedorDTO {
         this.material = material;
     }
 
-    public int getCordX() {
+    public double getCordX() {
         return cordX;
     }
 
-    public void setCordX(int cordX) {
+    public void setCordX(double cordX) {
         this.cordX = cordX;
     }
 
@@ -36,11 +37,11 @@ public class ContenedorDTO {
         this.id = id;
     }
 
-    public int getCordY() {
+    public double getCordY() {
         return cordY;
     }
 
-    public void setCordY(int cordY) {
+    public void setCordY(double cordY) {
         this.cordY = cordY;
     }
 
@@ -59,6 +60,14 @@ public class ContenedorDTO {
                 ", ubicacion=" + cordX +
                 ", " + cordY +
                 '}';
+    }
+
+    public double getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(double capacidad) {
+        this.capacidad = capacidad;
     }
 }
 

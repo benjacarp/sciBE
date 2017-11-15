@@ -101,6 +101,7 @@ public class RecolectorController {
             contenedorDTO.setMaterial(contenedor.getMaterial());
             contenedorDTO.setCordX(contenedor.getCordX());
             contenedorDTO.setCordY(contenedor.getCordY());
+            contenedorDTO.setCapacidad(contenedor.getCapacidad());
 
             if (contenedor.getRecolector() == null) {
                 contenedorDTO.setRecolectorName("no asignado");
