@@ -25,7 +25,7 @@ public class ContenedorService {
         return contenedorRepository.findOne(idContenedor);
     }
 
-    public List<Contenedor> getContenedoresSortedByDistance(int x, int y, String material) {
+    public List<Contenedor> getContenedoresSortedByMaterial(String material) {
         List<Contenedor> contenedores;
         if (!material.equals("")) {
             contenedores = contenedorRepository.getAllFilterByMaterial(material);
