@@ -151,10 +151,16 @@ public class ContenedorController {
     }
 
     @RequestMapping(value = "/recolector/{id}/contenedor", method = RequestMethod.GET)
-    public List<ContenedorDTO> getContenedoresForRecolector(@PathVariable int id) {
+    public List<String> getContenedoresForRecolector(@PathVariable int id, @RequestParam double x, @RequestParam double y) {
         Recolector recolector = recolectorService.findById(id);
         List<Contenedor> contenedores = contenedorService.getAllByRecolector(recolector);
-        return convertToDTOForRecolector(contenedores);
+
+        List<String> contenedoresString = new ArrayList<>();
+        for (Contenedor contenedor : contenedores) {
+            contenedoresString.add(contenedor.toString()
+                    + "\ndistancia: " + calcularDistancia(x,y,contenedor.getCordX(),contenedor.getCordY()));
+        }
+        return contenedoresString;
     }
 
     private List<ContenedorDTO> convertToDTOForRecolector(List<Contenedor> contenedores) {

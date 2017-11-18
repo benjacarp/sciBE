@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
+import utn.frt.proyecto.SCIBackEnd.model.Recolector;
 import utn.frt.proyecto.SCIBackEnd.repository.EmpresaRepository;
 
 @Component
@@ -42,5 +43,9 @@ public class EmpresaService {
 
     public Empresa findByContenedor(Contenedor recolector) {
         return repository.findByRecolector(recolector);
+    }
+
+    public Recolector getByRecolecotor(int dni) {
+        return repository.findByRecolectorDNI(dni);
     }
 }

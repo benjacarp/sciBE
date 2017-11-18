@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import utn.frt.proyecto.SCIBackEnd.dto.ContenedorDTO;
+import utn.frt.proyecto.SCIBackEnd.dto.LoginResponseDTO;
 import utn.frt.proyecto.SCIBackEnd.dto.RecolectorDTO;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;
@@ -111,5 +112,16 @@ public class RecolectorController {
             contenedorDTOS.add(contenedorDTO);
         }
         return contenedorDTOS;
+    }
+
+    @RequestMapping(value = "/recolector/login", method = RequestMethod.GET
+    )
+    public String login(@RequestParam String dni) {
+        Recolector recolector = empresaService.getByRecolecotor(Integer.parseInt(dni));
+
+        if (recolector == null) {
+            return null;
+        }
+        return String.valueOf(recolector.getId());
     }
 }

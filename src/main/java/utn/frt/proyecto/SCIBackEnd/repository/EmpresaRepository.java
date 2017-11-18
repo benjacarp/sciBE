@@ -65,4 +65,15 @@ public class EmpresaRepository {
         }
         return null;
     }
+
+    public Recolector findByRecolectorDNI(int dni) {
+        for (Empresa empresa: empresas) {
+            for (Recolector recolector : empresa.getRecolectores()) {
+                if (recolector.getDni() == dni) {
+                    return recolector;
+                }
+            }
+        }
+        return null;
+    }
 }
