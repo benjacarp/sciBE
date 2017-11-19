@@ -1,5 +1,6 @@
 package utn.frt.proyecto.SCIBackEnd.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import utn.frt.proyecto.SCIBackEnd.model.Contenedor;
 import utn.frt.proyecto.SCIBackEnd.model.Empresa;

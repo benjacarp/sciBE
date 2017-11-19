@@ -41,7 +41,7 @@ public class ContenedorService {
         List<Contenedor> contenedores = new ArrayList<>();
 
         for (Contenedor contenedor : allContenedores) {
-            if (recolector.equals(contenedor.getRecolector())) {
+            if (recolector.getId() == contenedor.getRecolector().getId()) {
                 contenedores.add(contenedor);
             }
         }
