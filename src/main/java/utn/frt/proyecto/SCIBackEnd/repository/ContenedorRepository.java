@@ -10,7 +10,7 @@ public class ContenedorRepository {
 
     private List<Contenedor> contenedores = new ArrayList<Contenedor>();
 
-    private int id = 0;
+    private int id = 3;
 
     public int save(Contenedor contenedor) {
         contenedores.add(contenedor);

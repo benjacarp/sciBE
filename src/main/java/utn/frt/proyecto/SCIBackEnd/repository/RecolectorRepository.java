@@ -11,7 +11,7 @@ public class RecolectorRepository {
 
     private List<Recolector> recolectores = new ArrayList<Recolector>();
 
-    private int id = 0;
+    private int id = 2;
 
     public int save(Recolector recolector) {
         recolectores.add(recolector);
