@@ -116,12 +116,12 @@ public class RecolectorController {
 
     @RequestMapping(value = "/recolector/login", method = RequestMethod.GET
     )
-    public String login(@RequestParam String dni) {
+    public int login(@RequestParam String dni) {
         Recolector recolector = empresaService.getByRecolecotor(Integer.parseInt(dni));
 
         if (recolector == null) {
-            return null;
+            return 0;
         }
-        return String.valueOf(recolector.getId());
+        return recolector.getId();
     }
 }
