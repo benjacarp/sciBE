@@ -163,6 +163,20 @@ public class ContenedorController {
         return contenedoresString;
     }
 
+    @RequestMapping(value = "/recolector/{id}/contenedor/verificar", method = RequestMethod.GET)
+    public boolean getContenedoresForRecolectorVerificar(@PathVariable int id) {
+        Recolector recolector = recolectorService.findById(id);
+        List<Contenedor> contenedores = contenedorService.getAllByRecolector(recolector);
+
+        int porcentaje;
+        for (Contenedor contenedor : contenedores) {
+            porcentaje = (int) (contenedor.getLlenado() / contenedor.getCapacidad() * 100);
+            if (porcentaje > 80)
+                return true;
+        }
+        return false;
+    }
+
     private List<ContenedorDTO> convertToDTOForRecolector(List<Contenedor> contenedores) {
         List<ContenedorDTO> contenedorDTOS = new ArrayList<>();
         ContenedorDTO contenedorDTO;
