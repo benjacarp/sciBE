@@ -125,7 +125,7 @@ public class EmpresaRepository {
     public Empresa findByRecolector(Contenedor contenedor) {
         for (Empresa empresa: empresas) {
             for (Contenedor contenedorEmpresa : empresa.getContenedores()) {
-                if (contenedor.equals(contenedorEmpresa)) {
+                if (contenedor.getId() == contenedorEmpresa.getId()) {
                     return empresa;
                 }
             }
